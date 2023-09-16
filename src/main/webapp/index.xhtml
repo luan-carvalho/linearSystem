@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<h:outputStylesheet library="css" name="style.css" />
+	<title>Linear System Calc</title>
+</h:head>
+
+<h:body>
+
+	<header>
+	<h1>Linear System Calculator</h1>
+	</header>
+
+	<main> <h:form id="system-form">
+
+		<div class="system-container" id="system-container">
+			<div class="system-line">
+				<p:inputNumber maxValue="100" minValue="-100"
+					value="#{systemController.x1}" />
+				<p>x +</p>
+				<p:inputNumber maxValue="100" minValue="-100"
+					value="#{systemController.y1}" />
+				<p>y +</p>
+				<p:inputNumber maxValue="100" minValue="-100"
+					value="#{systemController.z1}" />
+				<p>z =</p>
+				<p:inputNumber maxValue="100" minValue="-100"
+					value="#{systemController.r1}" />
+
+			</div>
+			<div class="system-line">
+				<p:inputNumber maxValue="100" minValue="-100"
+					value="#{systemController.x2}" />
+				<p>x +</p>
+				<p:inputNumber maxValue="100" minValue="-100"
+					value="#{systemController.y2}" />
+				<p>y +</p>
+				<p:inputNumber maxValue="100" minValue="-100"
+					value="#{systemController.z2}" />
+				<p>z =</p>
+				<p:inputNumber maxValue="100" minValue="-100"
+					value="#{systemController.r2}" />
+
+			</div>
+			<div class="system-line">
+				<p:inputNumber maxValue="100" minValue="-100"
+					value="#{systemController.x3}" />
+				<p>x +</p>
+				<p:inputNumber maxValue="100" minValue="-100"
+					value="#{systemController.y3}" />
+				<p>y +</p>
+				<p:inputNumber maxValue="100" minValue="-100"
+					value="#{systemController.z3}" />
+				<p>z =</p>
+				<p:inputNumber maxValue="100" minValue="-100"
+					value="#{systemController.r3}" />
+
+			</div>
+		</div>
+
+		<div class="button-container">
+			<p:commandButton value="Calculate"
+				action="#{systemController.calculate()}" update="result-modal" />
+			<p:commandButton value="Clean"
+				action="#{systemController.cleanFields()}" update="@form" />
+		</div>
+
+		<p:dialog id="result-modal" widgetVar="result-modal" minHeight="40"
+			width="350" showEffect="fade" modal="true" closable="false"
+			draggable="false" closeOnEscape="true" resizable="false"
+			showHeader="false" visible="#{systemController.showResultsModal}">
+
+			<div class="results-header">
+				<h2>Results</h2>
+			</div>
+			<div class="results-container">
+
+				<div class="result-box">
+					<h3>x</h3>
+					<span><h:outputText value='#{systemController.xResult}' /></span>
+				</div>
+
+				<div class="result-box">
+					<h3>y</h3>
+					<span><h:outputText value='#{systemController.yResult}' /></span>
+				</div>
+
+				<div class="result-box">
+					<h3>z</h3>
+					<span><h:outputText value='#{systemController.zResult}' /></span>
+				</div>
+
+			</div>
+			<div class="results-buttons-container">
+				<p:commandButton value="New system"
+					action="#{systemController.newSystem()}" update="@form" />
+				<p:commandButton value="Go back" onclick="PF('result-modal').hide()" />
+			</div>
+
+		</p:dialog>
+
+	</h:form> </main>
+</h:body>
+</html>
